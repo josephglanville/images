@@ -1,0 +1,24 @@
+bazel_dep(name = "bazel_skylib", version = "1.7.1")
+bazel_dep(name = "aspect_bazel_lib", version = "2.9.3")
+
+bazel_lib_toolchains = use_extension("@aspect_bazel_lib//lib:extensions.bzl", "toolchains")
+use_repo(bazel_lib_toolchains, "zstd_toolchains")
+use_repo(bazel_lib_toolchains, "bsd_tar_toolchains")
+use_repo(bazel_lib_toolchains, "yq_darwin_amd64")
+use_repo(bazel_lib_toolchains, "yq_darwin_arm64")
+use_repo(bazel_lib_toolchains, "yq_linux_amd64")
+use_repo(bazel_lib_toolchains, "yq_linux_arm64")
+use_repo(bazel_lib_toolchains, "yq_linux_ppc64le")
+use_repo(bazel_lib_toolchains, "yq_linux_s390x")
+use_repo(bazel_lib_toolchains, "yq_windows_amd64")
+
+bazel_dep(name = "rules_oci", version = "2.0.1")
+bazel_dep(name = "rules_distroless", version = "0.3.8")
+
+apt = use_extension("@rules_distroless//apt:extensions.bzl", "apt")
+apt.install(
+    name = "bullseye",
+    lock = "//:bullseye.lock.json",
+    manifest = "//:bullseye.yaml",
+)
+use_repo(apt, "bullseye")

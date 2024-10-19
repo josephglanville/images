@@ -1,0 +1,78 @@
+load("@rules_distroless//apt:defs.bzl", "dpkg_status")
+load("@rules_distroless//distroless:defs.bzl", "cacerts", "group", "passwd")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_load", "oci_push")
+load("//busybox:busybox.bzl", "busybox_layer")
+
+passwd(
+    name = "passwd",
+    entries = [
+        {
+            "uid": 0,
+            "gid": 0,
+            "home": "/root",
+            "shell": "/bin/sh",
+            "username": "root",
+        },
+    ],
+)
+
+group(
+    name = "group",
+    entries = [
+        {
+            "name": "root",
+            "gid": 0,
+        },
+    ],
+)
+
+cacerts(
+    name = "cacerts",
+    package = select({
+        "@platforms//cpu:arm64": "@bullseye//ca-certificates/arm64:data",
+        "@platforms//cpu:x86_64": "@bullseye//ca-certificates/amd64:data",
+    }),
+)
+
+busybox_layer(
+    name = "busybox"
+)
+
+PACKAGES = [
+    "@bullseye//busybox",
+    "@bullseye//curl",
+    "@bullseye//iproute2",
+]
+
+oci_image(
+    name = "image",
+    architecture = select({
+        "@platforms//cpu:arm64": "arm64",
+        "@platforms//cpu:x86_64": "amd64",
+    }),
+    os = "linux",
+    tars = [
+        ":passwd",
+        ":group",
+        ":cacerts",
+        ":busybox"
+    ] + select({
+        "@platforms//cpu:arm64": ["%s/arm64" % package for package in PACKAGES],
+        "@platforms//cpu:x86_64": ["%s/amd64" % package for package in PACKAGES],
+    }),
+)
+
+oci_push(
+    name = "push",
+    image = ":image",
+    repository = "ghcr.io/josephglanville/toolbox",
+    remote_tags = ["latest"]
+)
+
+oci_load(
+    name = "load",
+    image = ":image",
+    repo_tags = [
+        "ghcr.io/josephglanville/toolbox:latest",
+    ],
+)
