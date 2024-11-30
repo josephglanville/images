@@ -46,6 +46,7 @@ PACKAGES = [
 
 oci_image(
     name = "image",
+    entrypoint = ["/bin/sh"],
     architecture = select({
         "@platforms//cpu:arm64": "arm64",
         "@platforms//cpu:x86_64": "amd64",
