@@ -39,7 +39,7 @@ busybox_layer(
 )
 
 PACKAGES = [
-    "@bullseye//busybox",
+    "@bullseye//busybox-static",
     "@bullseye//curl",
     "@bullseye//iproute2",
 ]
