@@ -3,11 +3,11 @@
 version: 1
 sources:
   - channel: bullseye main contrib
-    url: https://snapshot-cloudflare.debian.org/archive/debian/20250320T204150Z
+    url: https://snapshot-cloudflare.debian.org/archive/debian/20250514T204826Z
   - channel: bullseye-security main
-    url: https://snapshot-cloudflare.debian.org/archive/debian-security/20250320T204150Z
+    url: https://snapshot-cloudflare.debian.org/archive/debian-security/20250514T204826Z
   - channel: bullseye-updates main
-    url: https://snapshot-cloudflare.debian.org/archive/debian/20250320T204150Z/
+    url: https://snapshot-cloudflare.debian.org/archive/debian/20250514T204826Z/
 archs:
   - "amd64"
   - "arm64"
