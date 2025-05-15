@@ -23,3 +23,6 @@ apt.install(
     manifest = "//:bullseye.yaml",
 )
 use_repo(apt, "bullseye")
+
+sum_ext = use_extension("//repositories:sum.bzl", "sum")
+use_repo(sum_ext, "sum_arm64", "sum_x86_64")

@@ -16,3 +16,4 @@ packages:
   - "ca-certificates"
   - "curl"
   - "iproute2"
+  - "zlib1g"

@@ -226,7 +226,28 @@
 		},
 		{
 			"arch": "amd64",
-			"dependencies": [],
+			"dependencies": [
+				{
+					"key": "libc6_2.31-13-p-deb11u12_amd64",
+					"name": "libc6",
+					"version": "2.31-13+deb11u12"
+				},
+				{
+					"key": "libcrypt1_1-4.4.18-4_amd64",
+					"name": "libcrypt1",
+					"version": "1:4.4.18-4"
+				},
+				{
+					"key": "libgcc-s1_10.2.1-6_amd64",
+					"name": "libgcc-s1",
+					"version": "10.2.1-6"
+				},
+				{
+					"key": "gcc-10-base_10.2.1-6_amd64",
+					"name": "gcc-10-base",
+					"version": "10.2.1-6"
+				}
+			],
 			"key": "zlib1g_1-1.2.11.dfsg-2-p-deb11u2_amd64",
 			"name": "zlib1g",
 			"sha256": "03d2ab2174af76df6f517b854b77460fbdafc3dac0dca979317da67538159a3e",
@@ -1239,7 +1260,28 @@
 		},
 		{
 			"arch": "arm64",
-			"dependencies": [],
+			"dependencies": [
+				{
+					"key": "libc6_2.31-13-p-deb11u12_arm64",
+					"name": "libc6",
+					"version": "2.31-13+deb11u12"
+				},
+				{
+					"key": "libcrypt1_1-4.4.18-4_arm64",
+					"name": "libcrypt1",
+					"version": "1:4.4.18-4"
+				},
+				{
+					"key": "libgcc-s1_10.2.1-6_arm64",
+					"name": "libgcc-s1",
+					"version": "10.2.1-6"
+				},
+				{
+					"key": "gcc-10-base_10.2.1-6_arm64",
+					"name": "gcc-10-base",
+					"version": "10.2.1-6"
+				}
+			],
 			"key": "zlib1g_1-1.2.11.dfsg-2-p-deb11u2_arm64",
 			"name": "zlib1g",
 			"sha256": "e3963985d1a020d67ffd4180e6f9c4b5c600b515f0c9d8fda513d7a0e48e63a1",
