@@ -1,6 +1,6 @@
 load("@rules_distroless//apt:defs.bzl", "dpkg_status")
 load("@rules_distroless//distroless:defs.bzl", "cacerts", "group", "passwd")
-load("@rules_oci//oci:defs.bzl", "oci_image", "oci_load", "oci_push")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_load", "oci_push", "oci_image_index")
 load("//busybox:busybox.bzl", "busybox_layer")
 
 passwd(
@@ -63,9 +63,20 @@ oci_image(
     }),
 )
 
+oci_image_index(
+    name = "index",
+    images = [
+        ":image",
+    ],
+    platforms = [
+        "//:linux_amd64",
+        "//:linux_arm64"
+    ]
+)
+
 oci_push(
     name = "push",
-    image = ":image",
+    image = ":index",
     repository = "ghcr.io/josephglanville/toolbox",
     remote_tags = ["latest"]
 )

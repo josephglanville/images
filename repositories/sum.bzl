@@ -19,6 +19,7 @@ filegroup(
     http_archive(
         name = "sum_x86_64",
         urls = ["https://www.supermicro.com/Bios/sw_download/698/sum_2.14.0_Linux_x86_64_20240215.tar.gz"],
+        integrity = "sha256-ec8mIDSTu2pbZPxQjZaWFR+J4It5EgpYLTN71armwKE=",
         add_prefix = "opt/sum",
         strip_prefix = "sum_2.14.0_Linux_x86_64",
         build_file_content = """
